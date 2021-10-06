@@ -10,7 +10,7 @@ build:
   kind: Docker
 
 publish:
-  repository: relaysh/servicenow-step-incidents-create
+  repository: relaysh/4me-step-requests-create
 
 schemas:
   spec:
