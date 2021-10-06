@@ -1,0 +1,30 @@
+# filename: test-metadata.yaml
+# # map of connections, named '<type>/<name>'
+# connections:
+#   aws/test:
+#     accessKeyID: AKIAACCESSKEY
+#     secretAccessKey: test
+
+# single string valued secrets
+secrets:
+  test: test
+
+# now the data to be fed into pseudo-run 1 of this workflow
+runs:
+  '1':      # quoted string, not numeric! thanks YAML
+    steps:
+      default:
+        # the `spec` keys match what you'd see in a real workflow
+        spec:
+          connection: 
+            host: 'https://api.4me-demo.com'
+            access_token: 'my_token'
+            account: weu-it
+          request:
+            service_instance_id: 72
+            subject: "My request"
+            impact: low
+            category: incident
+        outputs:
+          request:
+            id: 123

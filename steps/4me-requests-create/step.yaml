@@ -1,0 +1,39 @@
+apiVersion: integration/v1
+kind: Step
+name: requests-create
+version: 1
+summary: Create 4me request
+description: This 4me step container creates a request.
+icon:
+build:
+  apiVersion: build/v1
+  kind: Docker
+
+publish:
+  repository: relaysh/servicenow-step-incidents-create
+
+schemas:
+  spec:
+    source: file
+    file: spec.schema.json
+  outputs:
+    source: file
+    file: outputs.schema.json
+
+examples:
+  - summary: Create 4me request
+    content:
+      apiVersion: v1
+      kind: Step
+      name: 4me-create-request
+      image: timidri/4me-step-requests-create
+      spec:
+        connection: 
+          host: 'https://api.4me-demo.com'
+          access_token: 'my_access_token'
+          account: weu-it
+        request:
+          service_instance_id: 72
+          subject: "My request"
+          impact: low
+          category: incident
