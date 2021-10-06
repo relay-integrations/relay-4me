@@ -24,33 +24,35 @@
         "accessToken",
         "account"
       ]
-    }
-  },
-  "request": {
-    "type": "object",
-    "description": "The 4me request object",
-    "properties": {
-      "subject": {
-        "type": "string",
-        "description": "Subject of the request"
-      },
-      "category": {
-        "type": "string",
-        "description": "Category of the request (e.g. incident)"
-      },
-      "impact": {
-        "type": "string",
-        "description": "Impact of the request (e.g. low)"
-      },
-      "service_instance_id": {
-        "type": "integer",
-        "description": "Service instance for the request"
-      }
     },
-    "required": [
-      "subject",
-      "impact"
-    ]
+    "request": {
+      "type": "object",
+      "description": "The 4me request object",
+      "properties": {
+        "subject": {
+          "type": "string",
+          "description": "Subject of the request"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of the request (e.g. incident)"
+        },
+        "impact": {
+          "type": "string",
+          "description": "Impact of the request (e.g. low)"
+        },
+        "service_instance_id": {
+          "type": "integer",
+          "description": "Service instance for the request"
+        }
+      },
+      "required": [
+        "subject",
+        "category",
+        "impact",
+        "service_instance_id"
+      ]
+    }
   },
 "additionalProperties": false
 }
