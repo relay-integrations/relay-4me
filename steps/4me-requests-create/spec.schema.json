@@ -67,7 +67,7 @@
         "subject",
         "category",
         "impact",
-        "service_instance"
+        "service_instance_id"
       ]
     }
   },
