@@ -46,10 +46,6 @@
           "type": "integer",
           "description": "ID of the service instance in which the cause of the incident resides, for which the change is requested, or about which information is needed."
         },
-        "status": {
-          "type": "string",
-          "description": "Current status of the request (declined, assigned, accepted, in_progress, waiting_for, waiting_for_customer, change_pending, project_pending, completed)"
-        },
         "team": {
           "type": "integer",
           "description": "ID of the Team to which the request is to be assigned. By default, the first line team of the service instance that is related to the request will be selected. If a first line team has not been specified for the service instance, the support team of the service instance will be selected instead."
