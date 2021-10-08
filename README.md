@@ -8,7 +8,7 @@ The following are supported actions:
 
 |   Type    |  Name              |
 |-----------|--------------------|
-| Step      | [4me-step-requests-create](/steps/requests-create)  | 
+| Step      | [4me-step-requests-create](/steps/requests-create)  |
 
 
 ## Contributing

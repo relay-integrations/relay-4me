@@ -4,6 +4,7 @@
   "properties": {
     "connection": {
       "type": "object",
+      "x-relay-connectionType": "4me",
       "description": "A Relay 4me connection to use",
       "properties": {
         "host": {
