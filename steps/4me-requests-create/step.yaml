@@ -28,10 +28,7 @@ examples:
       name: 4me-create-request
       image: timidri/4me-step-requests-create
       spec:
-        connection: 
-          host: 'https://api.4me-demo.com'
-          access_token: 'my_access_token'
-          account: weu-it
+        connection: !Connection {type: 4me, name: my-4me-connection}
         request:
           service_instance_id: 72
           subject: "My request"
