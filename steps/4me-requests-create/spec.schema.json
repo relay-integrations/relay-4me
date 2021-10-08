@@ -32,26 +32,42 @@
       "properties": {
         "subject": {
           "type": "string",
-          "description": "Subject of the request"
+          "description": "A short description of the request."
         },
         "category": {
           "type": "string",
-          "description": "Category of the request (e.g. incident)"
+          "description": "Category of the request (incident, rfc, rfi, reservation, complaint, compliment, other)"
         },
         "impact": {
           "type": "string",
-          "description": "Impact of the request (e.g. low)"
+          "description": "The extent to which the service instance is impacted (low, medium, high, top)"
         },
         "service_instance_id": {
           "type": "integer",
-          "description": "Service instance for the request"
+          "description": "ID of the service instance in which the cause of the incident resides, for which the change is requested, or about which information is needed."
+        },
+        "status": {
+          "type": "string",
+          "description": "Current status of the request (declined, assigned, accepted, in_progress, waiting_for, waiting_for_customer, change_pending, project_pending, completed)"
+        },
+        "team": {
+          "type": "integer",
+          "description": "ID of the Team to which the request is to be assigned. By default, the first line team of the service instance that is related to the request will be selected. If a first line team has not been specified for the service instance, the support team of the service instance will be selected instead."
+        },
+        "member_id": {
+          "type": "integer",
+          "description": "ID of the person to whom the request is to be assigned."
+        },
+        "grouped_into_id": {
+          "type": "integer",
+          "description": "Reference (ID) of the request group that is used to group the requests that have been submitted for the resolution of exactly the same incident, for the implementation of exactly the same change, for the provision of exactly the same information, etc."
         }
       },
       "required": [
         "subject",
         "category",
         "impact",
-        "service_instance_id"
+        "service_instance"
       ]
     }
   },
