@@ -2,11 +2,14 @@
 require 'sdk4me/client'
 require 'net/http'
 
-def send_relay_outputs(outputs)
-  endpoint = ENV['METADATA_API_URL']
-  uri = URI("#{endpoint}/outputs/request")
+def endpoint
+  ENV['METADATA_API_URL']
+end
+
+def send_relay_outputs(key, value)
+  uri = URI("#{endpoint}/outputs/#{key}")
   req = Net::HTTP::Put.new(uri, { 'Content-Type' => 'application/json' })
-  req.body = outputs.to_json
+  req.body = value.to_json
   req.basic_auth uri.user, uri.password
   begin
     res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
@@ -22,17 +25,7 @@ def send_relay_outputs(outputs)
   exit(1)
 end
 
-def mock_data
-  require 'yaml'
-  data = YAML.safe_load(File.read('test-metadata-local.yaml'))['runs']['1']['steps']['default']['spec']
-  log.debug("data : #{data}")
-  { value: data }
-end
-
 def relay_inputs
-  return mock_data.deep_transform_keys(&:to_sym) if ENV['RELAY_MOCK']
-
-  endpoint = ENV['METADATA_API_URL']
   uri = URI("#{endpoint}/spec")
   req = Net::HTTP::Get.new(uri)
   req.basic_auth uri.user, uri.password
@@ -41,12 +34,12 @@ def relay_inputs
       http.request(req)
     end
   rescue StandardError => e
-    puts "Error fetching metadata: #{e}"
+    log.error("Error fetching metadata: #{e}")
     raise e
   end
   return JSON.parse(res.body).deep_transform_keys(&:to_sym) if res.is_a? Net::HTTPSuccess
 
-  puts "Error fetching metadata: #{res.inspect} #{res.body}"
+  log.error("Error fetching metadata: #{res.inspect} #{res.body}")
   exit(1)
 end
 
@@ -77,7 +70,7 @@ response = Sdk4me::Client.new.post('requests', request.merge({ requested_by: my_
 
 if response.valid?
   log.info("New request created with id #{response[:id]}")
-  send_relay_outputs(response)
+  send_relay_outputs(:request, response)
 else
   log.error(response.message, response[:errors])
 end
