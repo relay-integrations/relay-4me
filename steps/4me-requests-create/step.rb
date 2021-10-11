@@ -59,13 +59,13 @@ connection = spec[:connection]
 log.debug("connection: #{connection}")
 log.debug("connection[:host]: #{connection[:host]}")
 log.debug("connection[:account]: #{connection[:account]}")
-log.debug("connection[:access_token] (class): #{connection[:access_token]} ( #{connection[:access_token].class} )")
+log.debug("connection[:accessToken] (class): #{connection[:accessToken]} ( #{connection[:accessToken].class} )")
 
 Sdk4me.configure do |config|
   config.logger = log
   config.host = connection[:host]
   config.account = connection[:account]
-  config.access_token = connection[:access_token]
+  config.access_token = connection[:accessToken]
 end
 
 client = Sdk4me::Client.new

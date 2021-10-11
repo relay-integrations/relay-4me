@@ -18,7 +18,7 @@ runs:
         spec:
           connection: 
             host: 'https://api.4me-demo.com'
-            access_token: 'my_token'
+            accessToken: 'my_token'
             account: weu-it
           request:
             service_instance_id: 72
