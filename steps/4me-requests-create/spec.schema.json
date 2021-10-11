@@ -65,6 +65,10 @@
         "impact",
         "service_instance_id"
       ]
+    },
+    "debug": {
+      "type": "boolean",
+      "description": "(Advanced) Turn on step debug logging by setting this to true"
     }
   },
   "required": [

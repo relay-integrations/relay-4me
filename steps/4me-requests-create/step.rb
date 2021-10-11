@@ -13,19 +13,19 @@ def send_relay_outputs(outputs)
       http.request(req)
     end
   rescue StandardError => e
-    puts "Error writing outputs: #{e}"
+    log.error("Error writing outputs: #{e}")
     raise e
   end
   return res if res.is_a? Net::HTTPSuccess
 
-  puts "Error writing outputs: #{res.inspect} #{res.body}"
+  log.error("Error writing outputs: #{res.inspect} #{res.body}")
   exit(1)
 end
 
 def mock_data
   require 'yaml'
   data = YAML.safe_load(File.read('test-metadata-local.yaml'))['runs']['1']['steps']['default']['spec']
-  puts "data : #{data}"
+  log.debug("data : #{data}")
   { value: data }
 end
 
@@ -50,10 +50,12 @@ def relay_inputs
   exit(1)
 end
 
-log = Logger.new($stdout)
-log.level = Logger::DEBUG
 
 spec = relay_inputs[:value]
+
+log = Logger.new($stdout)
+log.level = spec[:debug] ? Logger::DEBUG : Logger::INFO
+
 connection = spec[:connection]
 
 log.debug("connection: #{connection}")
@@ -78,8 +80,8 @@ request = spec[:request]
 response = Sdk4me::Client.new.post('requests', request.merge({ requested_by: my_id }))
 
 if response.valid?
-  puts "New request created with id #{response[:id]}"
+  log.info("New request created with id #{response[:id]}")
   send_relay_outputs(response)
 else
-  puts response.message, response[:errors]
+  log.error(response.message, response[:errors])
 end
