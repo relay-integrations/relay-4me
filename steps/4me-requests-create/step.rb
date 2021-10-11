@@ -59,9 +59,6 @@ log.level = spec[:debug] ? Logger::DEBUG : Logger::INFO
 connection = spec[:connection]
 
 log.debug("connection: #{connection}")
-log.debug("connection[:host]: #{connection[:host]}")
-log.debug("connection[:account]: #{connection[:account]}")
-log.debug("connection[:accessToken] (class): #{connection[:accessToken]} ( #{connection[:accessToken].class} )")
 
 Sdk4me.configure do |config|
   config.logger = log
@@ -71,9 +68,8 @@ Sdk4me.configure do |config|
 end
 
 client = Sdk4me::Client.new
-response = client.get('me')
 
-my_id = response[:id]
+my_id = client.get('me')[:id]
 
 request = spec[:request]
 
