@@ -56,14 +56,15 @@ log.level = Logger::DEBUG
 spec = relay_inputs[:value]
 connection = spec[:connection]
 
+log.debug("connection[:host]: #{connection[:host]}")
+log.debug("connection[:account]: #{connection[:account]}")
+log.debug("connection[:access_token] (class): #{connection[:access_token]} ( #{connection[:access_token].class} )")
+
 Sdk4me.configure do |config|
   config.logger = log
   config.host = connection[:host]
-  log.debug("config.host: #{config.host}")
   config.account = connection[:account]
-  log.debug("config.account: #{config.account}")
   config.access_token = connection[:access_token]
-  log.debug("config.access_token: #{config.access_token}")
 end
 
 client = Sdk4me::Client.new
