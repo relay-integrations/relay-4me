@@ -70,7 +70,7 @@ response = Sdk4me::Client.new.post('requests', request.merge({ requested_by: my_
 
 if response.valid?
   log.info("New request created with id #{response[:id]}")
-  send_relay_outputs(:request, response)
+  send_relay_outputs(:request, response.json)
 else
   log.error(response.message, response[:errors])
 end
