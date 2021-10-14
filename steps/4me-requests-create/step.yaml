@@ -1,6 +1,6 @@
 apiVersion: integration/v1
 kind: Step
-name: requests-create
+name: 4me-step-requests-create
 version: 1
 summary: Create 4me request
 description: This 4me step container creates a request.
