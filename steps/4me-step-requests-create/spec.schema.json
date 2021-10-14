@@ -66,8 +66,7 @@
       "required": [
         "subject",
         "category",
-        "impact",
-        "service_instance_id"
+        "impact"
       ]
     },
     "debug": {
