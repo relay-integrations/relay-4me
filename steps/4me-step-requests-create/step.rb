@@ -43,7 +43,6 @@ def relay_inputs
   exit(1)
 end
 
-
 spec = relay_inputs[:value]
 
 log = Logger.new($stdout)
