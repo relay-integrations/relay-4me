@@ -26,7 +26,7 @@ examples:
       apiVersion: v1
       kind: Step
       name: 4me-create-request
-      image: timidri/4me-step-requests-create
+      image: relaysh/4me-step-requests-create
       spec:
         connection: !Connection {type: 4me, name: my-4me-connection}
         request:
