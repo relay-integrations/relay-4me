@@ -28,9 +28,10 @@ examples:
       name: 4me-create-request
       image: relaysh/4me-step-requests-create
       spec:
-        connection: !Connection {type: 4me, name: my-4me-connection}
+        connection: ${connections.'4me'.'my-4me-connection'}
         request:
-          service_instance_id: 72
+          service_instance_name: Email (Exchange) Europe
+          # service_instance_id: 72
           subject: "My request"
           impact: low
           category: incident

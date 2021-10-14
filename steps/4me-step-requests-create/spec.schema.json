@@ -44,7 +44,11 @@
         },
         "service_instance_id": {
           "type": "integer",
-          "description": "ID of the service instance in which the cause of the incident resides, for which the change is requested, or about which information is needed."
+          "description": "ID of the service instance in which the cause of the incident resides, for which the change is requested, or about which information is needed. Either `service_instance_id` or `service_instance_name` is required."
+        },
+        "service_instance_name": {
+          "type": "string",
+          "description": "Name of the service instance in which the cause of the incident resides, for which the change is requested, or about which information is needed. Either `service_instance_id` or `service_instance_name` is required."
         },
         "team": {
           "type": "integer",

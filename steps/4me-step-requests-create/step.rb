@@ -66,11 +66,24 @@ my_id = client.get('me')[:id]
 
 request = spec[:request]
 
+unless request[:service_instance_id]
+  unless request[:service_instance_name]
+    log.error("One of `service_instance_id` or `service_instance_name` parameters is required")
+    exit(1)
+  end
+  client.each('service_instances') do |si|
+    next unless si[:name] == request[:service_instance_name]
+
+    log.debug("Found service_instance_id #{si[:id]} for name #{request[:service_instance_name]}")
+    request[:service_instance_id] = si[:id]
+  end
+end
+
 response = Sdk4me::Client.new.post('requests', request.merge({ requested_by: my_id }))
 
 if response.valid?
   log.info("New request created with id #{response[:id]}")
   send_relay_outputs(:request, response.json)
 else
-  log.error(response.message, response[:errors])
+  log.error("#{response.message}: #{response[:errors]}")
 end
