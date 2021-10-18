@@ -50,12 +50,15 @@ def lookup_si_id(si_name)
     LOG.debug("Found service_instance_id #{si[:id]} for name #{si_name}")
     return si[:id]
   end
+  false
 end
 
 spec = relay_inputs[:value]
 
 LOG = Logger.new($stdout)
 LOG.level = spec[:debug] ? Logger::DEBUG : Logger::INFO
+
+LOG.debug("Spec: \n#{spec}")
 
 connection = spec[:connection]
 
@@ -79,7 +82,12 @@ unless si_id
     LOG.error('One of `service_instance_id` or `service_instance_name` parameters is required')
     exit(1)
   end
-  request[:service_instance_id] = lookup_si_id(si_name)
+  si_id = lookup_si_id(si_name)
+  unless si_id
+    LOG.error("Did not find service instance named `#{si_name}`")
+    exit(1)
+  end
+  request[:service_instance_id] = si_id
 end
 
 response = CLIENT.post('requests', request.merge({ requested_by: my_id }))
