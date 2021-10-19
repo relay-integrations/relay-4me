@@ -60,8 +60,7 @@
         },
         "ci": {
           "type": "integer",
-          "description": "Optional reference to Configuration Item — The Configuration item field is used to relate a CI to the request. When this field is used to update an existing request, all configuration items that are linked to this request will be replaced by the new configuration item.",
-          "desc2": "Multiple configuration items can be added to, or removed from, a request using the Requests - Configuration Items API."
+          "description": "Optional reference to Configuration Item — The Configuration item field is used to relate a CI to the request. When this field is used to update an existing request, all configuration items that are linked to this request will be replaced by the new configuration item. Multiple configuration items can be added to, or removed from, a request using the Requests - Configuration Items API."
         },
         "completion_reason": {
           "type": "string",
@@ -126,7 +125,6 @@
         "note": {
           "type": "string",
           "description": "Optional text (max 64KB) — The Note field is used to provide any additional information that could prove useful for resolving the request and/or to provide a summary of the actions that have been taken since the last entry.",
-          "desc2": "The Note field cannot be specified in the ?fields= parameter."
         },
         "note_attachments": {
           "type": "object",
@@ -158,8 +156,7 @@
         },
         "reviewed": {
           "type": "boolean",
-          "description": "Optional boolean, default: false — A request can be marked as reviewed by the problem manager of the service of the service instance that is linked to the request. Marking a request as reviewed excludes it from the ‘Requests for Problem Identification’ view.",
-          "desc2": "This field is automatically set to true when the Service instance field is empty, when the request is linked to a problem or change, or when the Grouping field is set to grouped. This field is also set to true when the completion_reason is solved and the impact is different from top."
+          "description": "Optional boolean, default: false — A request can be marked as reviewed by the problem manager of the service of the service instance that is linked to the request. Marking a request as reviewed excludes it from the ‘Requests for Problem Identification’ view. This field is automatically set to true when the Service instance field is empty, when the request is linked to a problem or change, or when the Grouping field is set to grouped. This field is also set to true when the completion_reason is solved and the impact is different from top."
         },
         "service_instance": {
           "type": "integer",
@@ -207,12 +204,10 @@
         "time_spent": {
           "type": "integer",
           "description": "Optional integer — The Time spent field is used to enter the time that you have spent working on the request since you started to work on it or, if you already entered some time for this request, since you last added your time spent in it.",
-          "desc2": "This field cannot be specified in the ?fields= parameter."
         },
         "time_spent_effort_class": {
           "type": "integer",
           "description": "Optional reference to Effort Class — The Effort class field is used to select the effort class that best reflects the type of effort for which time spent is being registered.",
-          "desc2": "This field cannot be specified in the ?fields= parameter."
         },
         "urgent": {
           "type": "boolean",
