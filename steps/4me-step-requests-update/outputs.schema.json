@@ -99,7 +99,7 @@
 					"description": "Optional enum — The Impact field is used to select the extent to which the service instance is impacted. Valid values are:\n* low: Low - Service Degraded for One User\n* medium: Medium - Service Down for One User\n* high: High - Service Degraded for Several Users\n* top: Top - Service Down for Several Users"
 				},
 				"internal_note": {
-					"type": "text",
+					"type": "string",
 					"description": "Optional text (max 64KB) — The Internal note field is used to provide information that is visible only for people who have the Auditor, Specialist or Account Administrator role of the account for which the internal note is intended. The X-4me-Account header can be included in an API PATCH request to add an internal note for a specific account (see Multiple Accounts)."
 				},
 				"internal_note_attachments": {
@@ -128,7 +128,7 @@
 				},
 				"note": {
 					"type": "string",
-					"description": "Optional text (max 64KB) — The Note field is used to provide any additional information that could prove useful for resolving the request and/or to provide a summary of the actions that have been taken since the last entry.",
+					"description": "Optional text (max 64KB) — The Note field is used to provide any additional information that could prove useful for resolving the request and/or to provide a summary of the actions that have been taken since the last entry."
 				},
 				"note_attachments": {
 					"type": "object",
@@ -231,11 +231,11 @@
 				},
 				"time_spent": {
 					"type": "integer",
-					"description": "Optional integer — The Time spent field is used to enter the time that you have spent working on the request since you started to work on it or, if you already entered some time for this request, since you last added your time spent in it.",
+					"description": "Optional integer — The Time spent field is used to enter the time that you have spent working on the request since you started to work on it or, if you already entered some time for this request, since you last added your time spent in it."
 				},
 				"time_spent_effort_class": {
 					"type": "integer",
-					"description": "Optional reference to Effort Class — The Effort class field is used to select the effort class that best reflects the type of effort for which time spent is being registered.",
+					"description": "Optional reference to Effort Class — The Effort class field is used to select the effort class that best reflects the type of effort for which time spent is being registered."
 				},
 				"updated_at": {
 					"type": "string",
