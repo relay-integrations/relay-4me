@@ -1,0 +1,265 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"type": "object",
+	"properties": {
+		"request": {
+			"type": "object",
+			"description": "Request details",
+			"properties": {
+				"request_id": {
+					"type": "integer",
+					"description": "The id of the request to update."
+				},
+				"addressed": {
+					"type": "boolean",
+					"description": "Optional boolean, default: false — When the Satisfaction field of the request is set to ‘Dissatisfied’, a person who has the Service Desk Manager role, can check the Addressed box to indicate that the requester has been conciliated."
+				},
+				"agile_board": {
+					"type": "integer",
+					"description": "Optional reference to Agile Board — The Agile board on which the request is placed."
+				},
+				"agile_board_column": {
+					"type": "integer",
+					"description": "Optional reference to Agile Board Column — The column of the agile board on which the request is placed."
+				},
+				"agile_board_column_position": {
+					"type": "integer",
+					"description": "Optional integer — The Position field is used to specify the position of the request, relative to the other items within the column of the agile board. The topmost item has position 1."
+				},
+				"assignment_count": {
+					"type": "integer",
+					"description": "Readonly integer — The Assignment count field is automatically set to the number of times that the Team field of the request has been set to a Team that is registered in the Account from which the request data is retrieved."
+				},
+				"attachments": {
+					"type": "array",
+					"description": "Readonly aggregated Attachments"
+				},
+				"category": {
+					"type": "string",
+					"description": "Required enum — The Category field is used to select the category of the request. Valid values are:\n* incident: Incident - Request for Incident Resolution\n* rfc: RFC - Request for Change\n* rfi: RFI - Request for Information\n* reservation: Reservation - Request for Reservation\n* complaint: Complaint - Request for Support Improvement\n* compliment: Compliment - Request for Bestowal of Praise\n* other: Other - Request is Out of Scope"
+				},
+				"change": {
+					"type": "integer",
+					"description": "Optional reference to Change — The Change field is used to link the request to a change."
+				},
+				"ci": {
+					"type": "integer",
+					"description": "Optional reference to Configuration Item — The Configuration item field is used to relate a CI to the request. When this field is used to update an existing request, all configuration items that are linked to this request will be replaced by the new configuration item.",
+					"desc2": "Multiple configuration items can be added to, or removed from, a request using the Requests - Configuration Items API."
+				},
+				"completed_at": {
+					"type": "string",
+					"description": "Readonly datetime — The Completed at field is automatically set to the date and time at which the request is saved with the status “Completed”."
+				},
+				"completion_reason": {
+					"type": "string",
+					"description": "Optional enum — The Completion reason field is used to select the appropriate completion reason for the request when it has been completed. Valid values are:\n* solved: Solved - Root Cause Analysis Not Required\n* workaround: Workaround - Root Cause Not Removed\n* gone: Gone - Unable to Reproduce\nduplicate: Duplicate - Same as Another Request of Customer\n* withdrawn: Withdrawn - Withdrawn by Requester\nno_reply: No Reply - No Reply Received from Customer\nrejected: Rejected - Rejected by Approver\n* conflict: Conflict - In Conflict with Internal Standard or Policy\n* declined: Declined - Declined by Service Provider\n* unsolvable: Unsolvable - Unable to Solve"
+				},
+				"created_at": {
+					"type": "string",
+					"description": "Readonly datetime — The date and time at which the request was created."
+				},
+				"created_by": {
+					"type": "integer",
+					"description": "Required reference to Person — The Created by field is automatically set to the person who submitted the request."
+				},
+				"custom_fields": {
+					"type": "object",
+					"description": "Optional custom fields — Custom fields provided in JSON format by the UI Extension that is linked to the related request template."
+				},
+				"downtime_end_at": {
+					"type": "string",
+					"description": "Optional datetime — The Downtime end field is used to specify the actual date and time at which the service became available again."
+				},
+				"downtime_start_at": {
+					"type": "string",
+					"description": "Optional datetime — The Downtime start field is used to specify the actual date and time at which the service outage started."
+				},
+				"desired_completion_at": {
+					"type": "string",
+					"description": "Optional datetime — The Desired completion field can be set to the date and time that has been agreed on for the completion of the request. The desired completion overwrites the automatically calculated resolution target of any affected SLA that is related to the request when the desired completion is later than the affected SLA’s resolution target. By default, the person selected in the Requested by field receives a notification based on the ‘Desired Completion Set for Request’ email template whenever the value in the Desired completion field is set, updated or removed."
+				},
+				"feedback": {
+					"type": "object",
+					"description": "Readonly hash — Hash containing the satisfied_url and the dissatisfied_url of the requested_for. In case the requested_by is different form the requested_for, the satisfaction link of the requested_by are also included. Feedback is null in case no feedback for the request can be provided at this time."
+				},
+				"grouped_into": {
+					"type": "integer",
+					"description": "Optional reference to Request — The Grouped into field displays the request group that is used to group the requests that have been submitted for the resolution of exactly the same incident, for the implementation of exactly the same change, for the provision of exactly the same information, etc."
+				},
+				"grouping": {
+					"type": "string",
+					"description": "Readonly enum, default: none — Valid values are:\n* none: None\n* group: Group\n* grouped: Grouped"
+				},
+				"id": {
+					"type": "integer",
+					"description": "Readonly integer — The unique ID of the request."
+				},
+				"impact": {
+					"type": "string",
+					"description": "Optional enum — The Impact field is used to select the extent to which the service instance is impacted. Valid values are:\n* low: Low - Service Degraded for One User\n* medium: Medium - Service Down for One User\n* high: High - Service Degraded for Several Users\n* top: Top - Service Down for Several Users"
+				},
+				"internal_note": {
+					"type": "text",
+					"description": "Optional text (max 64KB) — The Internal note field is used to provide information that is visible only for people who have the Auditor, Specialist or Account Administrator role of the account for which the internal note is intended. The X-4me-Account header can be included in an API PATCH request to add an internal note for a specific account (see Multiple Accounts).",
+					"desc2": "The Internal note field cannot be specified in the ?fields= parameter."
+				},
+				"internal_note_attachments": {
+					"type": "object",
+					"description": "Writeonly attachments The attachments used in the Internal Note field."
+				},
+				"knowledge_article": {
+					"type": "integer",
+					"description": "Optional reference to Knowledge Article — The Knowledge Article field is automatically set to the latest knowledge article that was applied to the request."
+				},
+				"major_incident_status": {
+					"type": "string",
+					"description": "Optional enum — The Major Incident Status field is used to indicate the status in the major incident management process. Valid values are:\n* proposed: Proposed\n* rejected: Rejected\n* accepted: Accepted\n* resolved: Resolved\n* canceled: Canceled"
+				},
+				"member": {
+					"type": "integer",
+					"description": "Optional reference to Person — The Member field is used to select the person to whom the request is to be assigned."
+				},
+				"new_assignment": {
+					"type": "boolean",
+					"description": "Readonly boolean, default: true — The New assignment field is set to true when the request’s status is ‘Assigned’ or ‘Declined’."
+				},
+				"next_target_at": {
+					"type": "string",
+					"description": "Readonly datetime — The Next target field value is empty when the status of the request is ‘Completed’. The next target equals the response target when a response target exists and the response target is less than the desired completion. Otherwise, the next target equals the desired completion when a desired completion exists. Otherwise, if the status is ‘Waiting for Customer’ the next target is clock_stopped when an affected SLA is linked to the request which Accountability field is set to provider or supplier. Otherwise, if the status is ‘Waiting for Customer’ the next target is best_effort. Otherwise the next target is the resolution target when a resolution target exists. In all other cases, the next target is best_effort."
+				},
+				"note": {
+					"type": "string",
+					"description": "Optional text (max 64KB) — The Note field is used to provide any additional information that could prove useful for resolving the request and/or to provide a summary of the actions that have been taken since the last entry.",
+					"desc2": "The Note field cannot be specified in the ?fields= parameter."
+				},
+				"note_attachments": {
+					"type": "object",
+					"description": "Writeonly attachments The attachments used in the Note field."
+				},
+				"organization": {
+					"type": "integer",
+					"description": "Readonly reference to Organization — The Organization field is automatically set when the request is saved for the first time to the organization that the person, who is selected in the Requested for field, belongs."
+				},
+				"planned_effort": {
+					"type": "integer",
+					"description": "Optional integer (max 600000) — The Planned effort field is used to specify the number of minutes the member is expected to spend working on the request."
+				},
+				"problem": {
+					"type": "integer",
+					"description": "Optional reference to Problem — The Problem field is used to link the request to a problem."
+				},
+				"project": {
+					"type": "integer",
+					"description": "Optional reference to Project — The Project field is used to link the request to a project."
+				},
+				"reopen_count": {
+					"type": "integer",
+					"description": "Readonly integer — The Reopen count field is automatically set to the number of times that the status of the request has changed from ‘Completed’ to a different value in the Account from which the request data is retrieved."
+				},
+				"reservation": {
+					"type": "integer",
+					"description": "Optional reference to Reservation — The Reservations field is used to link the request to a reservation."
+				},
+				"resolution_target_at": {
+					"type": "string",
+					"description": "Readonly datetime — The Resolution target field automatically indicates when the current assignment team needs to have completed the request. The target displayed in this field is the most stringent resolution target of the affected SLAs that are related to the request and for which the current assignment team is responsible."
+				},
+				"response_target_at": {
+					"type": "string",
+					"description": "Readonly datetime — The Response target field automatically indicates when the current assignment team needs to have responded to the request. The target displayed in this field is the most stringent response target of the affected SLAs that are related to the request and for which the current assignment team is responsible."
+				},
+				"requested_by": {
+					"type": "integer",
+					"description": "Required reference to Person — The Requested by field is used to select the person who submitted the request."
+				},
+				"requested_for": {
+					"type": "integer",
+					"description": "Required reference to Person — The Requested for field is used to select the person for whom the request was submitted. The person selected in the Requested by field is automatically selected in this field, but another person can be selected if the request is submitted for another person."
+				},
+				"requester_resolution_target_at": {
+					"type": "string",
+					"description": "Readonly datetime — The Requester resolution target field is automatically set to the most stringent resolution target of the request’s affected SLAs, which Accountability field is not set to sla_not_affected and which are linked to an SLA for which the person who is selected in the Requested for field has coverage."
+				},
+				"reviewed": {
+					"type": "boolean",
+					"description": "Optional boolean, default: false — A request can be marked as reviewed by the problem manager of the service of the service instance that is linked to the request. Marking a request as reviewed excludes it from the ‘Requests for Problem Identification’ view.",
+					"desc2": "This field is automatically set to true when the Service instance field is empty, when the request is linked to a problem or change, or when the Grouping field is set to grouped. This field is also set to true when the completion_reason is solved and the impact is different from top."
+				},
+				"satisfaction": {
+					"type": "string",
+					"description": "Readonly enum — The Satisfaction field is set when a requester uses the hyperlinks defined in the ‘Request Set to Completed’ email template to indicate whether or not he/she is satisfied with the manner in which a request has been handled. Valid values, apart from the default null, are:\n* dissatisfied: Dissatisfied\n* satisfied: Satisfied\nIt is also possible to set the value of this field via the Request Satisfaction API."
+				},
+				"service_instance": {
+					"type": "integer",
+					"description": "Optional reference to Service Instance — The Service instance field is used to select the Service Instance in which the cause of the incident resides, for which the change is requested, or about which information is needed."
+				},
+				"source": {
+					"type": "string",
+					"description": "The source and sourceID fields keep track of where resources originate from. The source field is used to specify the name of the external system from which the data of a 4me record was obtained. The sourceID field is used to specify the unique identifier or number that can be used to find the record in the source system. When the data that is stored in 4me originates from multiple external systems, the combination of these two fields is used to uniquely identify records in the correct source system. When building an integration with 4me its is recommended to fill out both these fields while importing resources from an external system into 4me. An update of the source and sourceID field values of a record can only be performed by an API user who has the Account Administrator role of the account to which the record belongs. If the Account Administrator role does not provide write access to the type of record that needs to be updated, then the API user will also need another role that does give write access to this record type. For example, if an API user needs to be able to update the source and sourceID field values of requests, then this API user will need to have the Specialist role, as well as the Account Administrator role, of the account to which the requests belong. \n* source: an identifier for the client application submitting the resource or the name of an external system (limited to 30 characters)\n* sourceID - the unique identifier of the resource in an external system (limited to 128 characters)"
+				},
+				"sourceID": {
+					"type": "string",
+					"description": "Optional string (max 128) - See source"
+				},
+				"status": {
+					"type": "string",
+					"description": "Optional enum, default: assigned — The Status field is used to select the current status of the request. Valid values are:\n* declined: Declined\n* assigned: Assigned\n* accepted: Accepted\n* in_progress: In Progress\n* waiting_for: Waiting for…\n* waiting_for_customer: Waiting for Customer\n* change_pending: Change Pending\n* project_pending: Project Pending\n* completed: Completed"
+				},
+				"subject": {
+					"type": "string",
+					"description": "Required string (max 255) — The Subject field is used to enter a short description of the request."
+				},
+				"supplier": {
+					"type": "integer",
+					"description": "Optional reference to Organization — The Supplier field is used to select the supplier organization that has been asked to assist with the request. The supplier organization is automatically selected in this field after a service instance has been selected that is provided by an external service provider organization."
+				},
+				"supplier_requestID": {
+					"type": "string",
+					"description": "Optional string (max 255) — The Supplier request ID field is used to enter the identifier under which the request has been registered at the supplier organization. If the supplier provided a link to the request, enter the entire URL in this field."
+				},
+				"support_domain": {
+					"description": "Used to specify the support domain account ID in which the request is to be registered. This parameter needs to be specified when the current user’s Person record is registered in a directory account. The ID of a 4me account can be found in the ‘Account Overview’ section of the Settings console."
+				},
+				"task": {
+					"type": "integer",
+					"description": "Optional reference to Task — The Task field is visible only when the request was automatically generated by a task. When visible, this field contains the task that caused the request to be generated."
+				},
+				"team": {
+					"type": "integer",
+					"description": "Required reference to Team — The Team field is used to select the Team to which the request is to be assigned. By default, the first line team of the service instance that is related to the request will be selected. If a first line team has not been specified for the service instance, the support team of the service instance will be selected instead."
+				},
+				"template": {
+					"type": "integer",
+					"description": "Optional reference to Request Template — The Template field contains the link to the request template that was last applied to the request."
+				},
+				"time_spent": {
+					"type": "integer",
+					"description": "Optional integer — The Time spent field is used to enter the time that you have spent working on the request since you started to work on it or, if you already entered some time for this request, since you last added your time spent in it.",
+					"desc2": "This field cannot be specified in the ?fields= parameter."
+				},
+				"time_spent_effort_class": {
+					"type": "integer",
+					"description": "Optional reference to Effort Class — The Effort class field is used to select the effort class that best reflects the type of effort for which time spent is being registered.",
+					"desc2": "This field cannot be specified in the ?fields= parameter."
+				},
+				"updated_at": {
+					"type": "string",
+					"description": "Readonly datetime — The date and time of the last update of the request. If the request has no updates it contains the created_at value."
+				},
+				"urgent": {
+					"type": "boolean",
+					"description": "Optional boolean, default: false — When the request has been marked as urgent, the Urgent field is set to true."
+				},
+				"waiting_until": {
+					"type": "string",
+					"description": "Optional datetime — The Waiting until field is used to specify the date and time at which the status of the request is to be updated from waiting_for to assigned. This field is available only when the Status field is set to waiting_for."
+				}
+			}
+		}
+	},
+	"required": [
+		"request"
+	],
+	"additionalProperties": false
+}

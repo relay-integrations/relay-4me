@@ -18,7 +18,7 @@ channel: beta
 #
 # As a convenience, this information may come from another text file or from a
 # Git tag (if applicable). We may add additional sources in the future.
-version: v20211014
+version: v20211019
 
 # The shortest possible accurate description of this integration. Required. May
 # just be the name of the service.

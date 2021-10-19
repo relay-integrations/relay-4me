@@ -1,0 +1,37 @@
+apiVersion: integration/v1
+kind: Step
+name: 4me-step-requests-update
+version: 1
+summary: Update 4me request
+description: This 4me step container updates a request.
+icon:
+build:
+  apiVersion: build/v1
+  kind: Docker
+
+publish:
+  repository: relaysh/4me-step-requests-update
+
+schemas:
+  spec:
+    source: file
+    file: spec.schema.json
+  outputs:
+    source: file
+    file: outputs.schema.json
+
+examples:
+  - summary: Update 4me request
+    content:
+      apiVersion: v1
+      kind: Step
+      name: 4me-create-request
+      image: relaysh/4me-step-requests-update
+      spec:
+        connection: ${connections.'4me'.'my-4me-connection'}
+        request:
+          service_instance_name: Email (Exchange) Europe
+          service_instance_id: 72
+          subject: "My request"
+          impact: low
+          category: incident

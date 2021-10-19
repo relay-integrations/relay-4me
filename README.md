@@ -4,11 +4,12 @@ Integration with 4me for Puppet Relay.
 
 ## Actions
 
-The following are supported actions: 
+The following are supported actions:
 
 |   Type    |  Name              |
 |-----------|--------------------|
 | Step      | [4me-step-requests-create](/steps/4me-step-requests-create)  |
+| Step      | [4me-step-requests-update](/steps/4me-step-requests-update)  |
 
 ### Issues
 
