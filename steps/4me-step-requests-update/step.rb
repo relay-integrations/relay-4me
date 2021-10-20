@@ -53,9 +53,8 @@ def lookup_si_id(si_name)
   false
 end
 
-spec = relay_inputs[:value]
-
 LOG = Logger.new($stdout)
+spec = relay_inputs[:value]
 LOG.level = spec[:debug] ? Logger::DEBUG : Logger::INFO
 
 LOG.debug("Spec: \n#{spec}")
