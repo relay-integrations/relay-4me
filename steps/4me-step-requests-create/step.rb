@@ -97,4 +97,4 @@ unless response.valid?
 end
 
 LOG.info("New request created with id #{response[:id]}")
-send_relay_outputs(:request, response.json)
+send_relay_outputs(:request, response.json.merge({ request_id: response[:id] }))
