@@ -67,7 +67,7 @@
           "description": "Optional enum — The Completion reason field is used to select the appropriate completion reason for the request when it has been completed. Valid values are:\n* solved: Solved - Root Cause Analysis Not Required\n* workaround: Workaround - Root Cause Not Removed\n* gone: Gone - Unable to Reproduce\nduplicate: Duplicate - Same as Another Request of Customer\n* withdrawn: Withdrawn - Withdrawn by Requester\nno_reply: No Reply - No Reply Received from Customer\nrejected: Rejected - Rejected by Approver\n* conflict: Conflict - In Conflict with Internal Standard or Policy\n* declined: Declined - Declined by Service Provider\n* unsolvable: Unsolvable - Unable to Solve"
         },
         "custom_fields": {
-          "type": "array",
+          "type": "object",
           "description": "Optional custom fields — Custom fields provided in JSON format by the UI Extension that is linked to the related request template. This should be an array of JSON hashes in which each hash has keys 'id' and 'value'"
         },
         "downtime_end_at": {
@@ -187,6 +187,7 @@
           "description": "Optional string (max 255) — The Supplier request ID field is used to enter the identifier under which the request has been registered at the supplier organization. If the supplier provided a link to the request, enter the entire URL in this field."
         },
         "support_domain": {
+          "type": "string",
           "description": "Used to specify the support domain account ID in which the request is to be registered. This parameter needs to be specified when the current user’s Person record is registered in a directory account. The ID of a 4me account can be found in the ‘Account Overview’ section of the Settings console."
         },
         "task": {
