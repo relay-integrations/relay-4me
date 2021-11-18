@@ -25,13 +25,10 @@ examples:
     content:
       apiVersion: v1
       kind: Step
-      name: 4me-create-request
+      name: 4me-update-request
       image: relaysh/4me-step-requests-update
       spec:
         connection: ${connections.'4me'.'my-4me-connection'}
         request:
-          service_instance_name: Email (Exchange) Europe
-          service_instance_id: 72
-          subject: "My request"
-          impact: low
-          category: incident
+          request_id: 123456
+          subject: "My updated request"
